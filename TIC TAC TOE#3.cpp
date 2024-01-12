@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iostream>//TIC TAC TOE
 using namespace std;
 
 class TicTacToe{
@@ -10,7 +10,7 @@ private:
     string playAgain;
     
    public: 
-   //Constructor to initialize the boar and currentPlayer
+   //Constructor to initialize the board and currentPlayer
    TicTacToe():currentPlayer('X'){
    	initBoard(board);
    }
@@ -21,8 +21,10 @@ private:
 	cin.ignore();
    }
    
-void playGame(){//Controls the major part of program
-    do {
+void playGame()//Controls the major part of program
+{
+    do //Using do-while loop to execute program atleast once
+	{
         // Initialize the board
         initBoard(board);
         currentPlayer = 'X';
@@ -57,7 +59,8 @@ void playGame(){//Controls the major part of program
 
                 // Switch player for the next move
                 switchPlayer(currentPlayer);
-            } else {
+            }
+			else {
                 cout << "Invalid move. Try again." << endl;
             }
 
@@ -78,11 +81,11 @@ void playGame(){//Controls the major part of program
 
 // Function to initialize the board
 void initBoard(char board[3][3]) {
-    char cell = '1';
+    char block = '1';
 
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            board[i][j] = cell++;//Assigning numbers to 3x3 board
+            board[i][j] = block++;//Assigning numbers to 3x3 board
         }
     }
 }
@@ -105,15 +108,18 @@ bool makeMove(char board[3][3], int move, char currentPlayer) {
         return false;
     }
 
-    // Convert move to array indices
-    int row = (move - 1) / 3;
-    int col = (move - 1) % 3;
+    // Convert move to array indices (converting number into block of board)
+    int row = (move - 1) / 3;//for row placement
+    int col = (move - 1) % 3;//for column placement
 
-    // Check if the cell is empty
-    if (board[row][col] != 'X' && board[row][col] != 'O') {
+    // Check if any block is empty
+    if (board[row][col] != 'X' && board[row][col] != 'O')
+	{
         board[row][col] = currentPlayer;
         return true;
-    } else {
+    } 
+	else 
+	{
         return false;
     }
 }
@@ -155,17 +161,9 @@ void switchPlayer(char& currentPlayer) {
 
 int main()
 {
-	TicTacToe game;// Creating object if class through which we access the member functions inside class
+	TicTacToe game;// Creating object of class through which we can access all the members inside class
+	//constructor is automatically invoked
 	game.displayHeading();//Calling for intro heading
-	game.playGame();//Calling for playing the game (flow of actual program)
+	game.playGame();//Calling for playing the game (main control of program)
 }
 
-
-    
-
-
-    
-   
-        
-      
-	
